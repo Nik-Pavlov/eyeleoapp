@@ -94,8 +94,6 @@ private:
     wxCheckBox *_chkWindowNearby;
     wxCheckBox *_chkInactivityTracking;
 
-    wxCheckBox *_chkShowNotifications;
-
     wxString GetInformation() const;
 
 public:
@@ -112,7 +110,6 @@ public:
     void SetWindowNearbySetting(bool value);
     void SetInactivityTrackingEnabled(bool value);
     void SetCanCloseNotifications(bool value);
-    void SetShowNotificationsEnabled(bool value);
 
 private:
     bool GetBigPauseEnabled() const;
@@ -128,7 +125,6 @@ private:
     bool GetCanCloseNotifications() const;
     bool GetWindowNearbySetting() const;
     bool GetInactivityTrackingEnabled() const;
-	bool GetShowNotificationsEnabled() const;
 
     static bool inited;
 

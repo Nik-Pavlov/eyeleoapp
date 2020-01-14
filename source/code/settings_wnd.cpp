@@ -321,26 +321,6 @@ SettingsWindow::SettingsWindow(const wxString &title)
     tooltip6->SetDelay(800);
     _chkInactivityTracking->SetToolTip(tooltip6);
 
-
-    imgIcon = new wxStaticBitmap(pageSettings, wxID_ANY, _iconWarning);
-    _chkShowNotifications = new wxCheckBox(pageSettings,
-                                            ID_SETTINGS_CHK_ENABLE_INACTIVITY_TRACKING,
-                                            langPack->Get("settings_show_notifications"),
-                                            wxDefaultPosition,
-                                            wxDefaultSize,
-                                            wxCHK_2STATE,
-                                            wxDefaultValidator,
-                                            _("_chkShowNotifications"));
-    wxBoxSizer *sizerShowNotifications = new wxBoxSizer(wxHORIZONTAL);
-
-    sizerShowNotifications->Add(imgIcon, wxSizerFlags().Center());
-    sizerShowNotifications->AddSpacer(3);
-    sizerShowNotifications->Add(_chkShowNotifications, wxSizerFlags().Center().Border(wxALL, 3));
-
-    wxToolTip *toolShowNotifications = new wxToolTip(langPack->Get("settings_show_notifications_tooltip"));
-    toolShowNotifications->SetDelay(800);
-    _chkShowNotifications->SetToolTip(toolShowNotifications);
-
     //
     sizerPanel->Add(sizerBigPauses, wxSizerFlags().Left().Border(wxALL, 4));
     sizerPanel->Add(sizerWarnPauses, wxSizerFlags().Left().Border(wxALL, 4));
@@ -352,8 +332,6 @@ SettingsWindow::SettingsWindow(const wxString &title)
     sizerPanel->Add(sizerWindowNearby, wxSizerFlags().Left().Border(wxLEFT, 4));
     sizerPanel->AddSpacer(8);
     sizerPanel->Add(sizerInactivityTracking, wxSizerFlags().Left().Border(wxLEFT, 4));
-    sizerPanel->AddSpacer(8);
-    sizerPanel->Add(sizerShowNotifications, wxSizerFlags().Left().Border(wxLEFT, 4));
     sizerPanel->AddSpacer(8);
     sizerPanel->Add(sizerTryButtons, wxSizerFlags().Left().Border(wxALL, 4));
 
@@ -567,10 +545,6 @@ void SettingsWindow::SetInactivityTrackingEnabled(bool value) {
     _chkInactivityTracking->SetValue(value);
 }
 
-void SettingsWindow::SetShowNotificationsEnabled(bool value) {
-    _chkShowNotifications->SetValue(value);
-}
-
 void SettingsWindow::SetCanCloseNotifications(bool value) {
     _chkCanCloseNotifications->SetValue(value);
 }
@@ -632,10 +606,6 @@ bool SettingsWindow::GetInactivityTrackingEnabled() const {
     return _chkInactivityTracking->GetValue();
 }
 
-bool SettingsWindow::GetShowNotificationsEnabled() const {
-    return _chkShowNotifications->GetValue();
-}
-
 void SettingsWindow::PullSettings() {
     SetBigPauseEnabled(getApp()->GetBigPauseEnabled());
     SetBigPauseInterval(getApp()->GetBigPauseInterval());
@@ -650,7 +620,6 @@ void SettingsWindow::PullSettings() {
     SetWindowNearbySetting(getApp()->GetWindowNearbySetting());
     SetCanCloseNotifications(getApp()->GetCanCloseNotificationsSetting());
     SetInactivityTrackingEnabled(getApp()->GetInactivityTrackingEnabled());
-    SetShowNotificationsEnabled(getApp()->GetShowNotificationsEnabled());    
 }
 
 void SettingsWindow::PushSettings() {
@@ -667,7 +636,6 @@ void SettingsWindow::PushSettings() {
     getApp()->SetWindowNearbySetting(GetWindowNearbySetting());
     getApp()->SetCanCloseNotificationsSetting(GetCanCloseNotifications());
     getApp()->SetInactivityTrackingEnabled(GetInactivityTrackingEnabled());
-    getApp()->SetShowNotificationsEnabled(GetShowNotificationsEnabled());
     getApp()->SaveSettings();
 }
 
